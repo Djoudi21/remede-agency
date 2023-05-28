@@ -6,32 +6,35 @@ import { setIsLoggedIn } from '../store/logInSlice'
 import {useState} from "react";
 import UserService from '../services/UserService'
 import AxiosUserRepository from "../services/repositories/axiosUserRepository";
+import {useNavigate} from "react-router-dom";
 
 export default function SignIn() {
-    const isLoggedIn = useSelector(state => state.logIn.value)
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector(state => !!state.logIn.value)
     const dispatch = useDispatch()
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const axiosUserRepository = new AxiosUserRepository()
     const userService = new UserService(axiosUserRepository)
     async function login(event) {
         event.preventDefault();
-        dispatch(setIsLoggedIn())
-        console.log('TOTO', isLoggedIn)
-
-        await userService.signIn({username, password, rememberMe})
+        const res = await userService.signIn({email, password, rememberMe})
+        if(res.data.status && res.data.status === 200) {
+            dispatch(setIsLoggedIn())
+            navigate('/user/profile')
+        }
     }
 
-    function toto(event) {
-        setUsername(event.target.value)
+    function setEmailInputValue(event) {
+        setEmail(event.target.value)
     }
 
-    function tutu(event) {
+    function setPasswordInputValue(event) {
         setPassword(event.target.value)
     }
 
-    function tata(event) {
+    function setRememberMeInoutValue(event) {
         setRememberMe(event.target.value)
     }
     return (
@@ -39,18 +42,18 @@ export default function SignIn() {
             <main className={`${stylesIndex.main} ${stylesIndex.bgDark}`}>
                 <section className={`${styles.signInContent}`}>
                     <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
-                    {isLoggedIn ? <h1>Sign In</h1> : <h1>Sign Out</h1>}
+                    {isLoggedIn ?  <h1>Sign Out</h1>  : <h1>Sign In</h1>}
                     <form onSubmit={login}>
                         <div className={`${stylesIndex.inputWrapper}`}>
-                            <label htmlFor="username">Username</label
-                            ><input onInput={toto} type="text" id="username"/>
+                            <label htmlFor="email">Username</label
+                            ><input onInput={setEmailInputValue} type="text" id="email"/>
                         </div>
                         <div className={`${stylesIndex.inputWrapper}`}>
                             <label htmlFor="password">Password</label
-                            ><input onInput={tutu} type="password" id="password"/>
+                            ><input onInput={setPasswordInputValue} type="password" id="password"/>
                         </div>
                         <div className={`${stylesIndex.inputRemember}`}>
-                            <input onChange={tata} type="checkbox" id="remember-me"/><label htmlFor="remember-me"
+                            <input onChange={setRememberMeInoutValue} type="checkbox" id="remember-me"/><label htmlFor="remember-me"
                         >Remember me</label
                         >
                         </div>

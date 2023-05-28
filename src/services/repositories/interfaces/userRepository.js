@@ -1,3 +1,4 @@
 export interface UserRepository {
-    signIn(credentials)
+    // signIn(credentials)
+    // updateUserProfile(value): Promise
 }

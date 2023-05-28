@@ -11,9 +11,7 @@ export const logInSlice = createSlice({
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
         setIsLoggedIn: state => {
-            console.log('AVANT',  state.value)
-            state.value = !state.value
-            console.log('APRES',  state.value)
+            state.value =  !state.value
         },
     }
 })

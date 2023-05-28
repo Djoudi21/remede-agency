@@ -6,4 +6,8 @@ export default class UserService {
     signIn = async (credentials) => {
         return this.userRepository.signIn(credentials)
     }
+
+    updateUserProfile = async (value) => {
+        return this.userRepository.updateUserProfile(value)
+    }
 }
