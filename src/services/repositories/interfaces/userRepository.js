@@ -1,3 +1,3 @@
-export  interface UserRepository {
-    signin(credentials)
+export interface UserRepository {
+    signIn(credentials)
 }

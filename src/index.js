@@ -4,10 +4,13 @@ import './assets/css/index.module.scss';
 import Home from './pages/home';
 import SignIn from './pages/signIn';
 import reportWebVitals from './reportWebVitals';
+import store from './store'
+import { Provider } from 'react-redux'
 import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import UserProfile from "./pages/userProfile";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -19,6 +22,11 @@ const router = createBrowserRouter([
         element: <SignIn />,
         // errorElement: <ErrorPage />,
     },
+    {
+        path: "/user/profile",
+        element: <UserProfile />,
+        // errorElement: <ErrorPage />,
+    },
     // {
     //     path: "*",
     //     element:  <ErrorPage />,
@@ -27,7 +35,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router}/>
+      <Provider store={store}>
+        <RouterProvider router={router}/>
+      </Provider>
   </React.StrictMode>
 );
 

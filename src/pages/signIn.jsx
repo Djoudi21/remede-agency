@@ -1,11 +1,15 @@
 import Layout from "../components/Layout";
 import styles from "../assets/css/_SignIn.module.scss";
 import stylesIndex from "../assets/css/index.module.scss";
-import {useEffect, useState} from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsLoggedIn } from '../store/logInSlice'
+import {useState} from "react";
 import UserService from '../services/UserService'
 import AxiosUserRepository from "../services/repositories/axiosUserRepository";
 
 export default function SignIn() {
+    const isLoggedIn = useSelector(state => state.logIn.value)
+    const dispatch = useDispatch()
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -13,6 +17,9 @@ export default function SignIn() {
     const userService = new UserService(axiosUserRepository)
     async function login(event) {
         event.preventDefault();
+        dispatch(setIsLoggedIn())
+        console.log('TOTO', isLoggedIn)
+
         await userService.signIn({username, password, rememberMe})
     }
 
@@ -29,10 +36,10 @@ export default function SignIn() {
     }
     return (
         <Layout>
-            <main className={`${styles.main} ${styles.bgDark}`}>
+            <main className={`${stylesIndex.main} ${stylesIndex.bgDark}`}>
                 <section className={`${styles.signInContent}`}>
                     <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
-                    <h1>Sign In</h1>
+                    {isLoggedIn ? <h1>Sign In</h1> : <h1>Sign Out</h1>}
                     <form onSubmit={login}>
                         <div className={`${stylesIndex.inputWrapper}`}>
                             <label htmlFor="username">Username</label

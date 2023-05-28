@@ -1,8 +1,11 @@
 import styles from "../assets/css/_Header.module.scss";
 import stylesIndex from "../assets/css/index.module.scss";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 export default function Header() {
+    const isLoggedIn = useSelector(state => state.logIn.value)
+
     return (
         <nav className={`${styles.mainNav}`}>
             <Link to={'/'} className={`${styles.mainNavLogo}`}>
@@ -15,7 +18,7 @@ export default function Header() {
             </Link>
             <Link className={`${styles.mainNavItem}`} to={'/sign-in'}>
                 <i className="fa fa-user-circle"></i>
-                Sign In
+                {isLoggedIn ? 'Sign In' : 'Sign Out'}
             </Link>
         </nav>
     )
