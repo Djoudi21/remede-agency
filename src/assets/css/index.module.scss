@@ -27,14 +27,6 @@ body {
   min-height: 100vh;
 }
 
-.main {
-  flex: 1;
-}
-
-.bg-dark {
-  background-color: #12002b;
-}
-
 .srOnly {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
@@ -49,26 +41,26 @@ body {
   white-space: nowrap !important;
 }
 
-.input-remember {
+.inputRemember {
   display: flex;
 }
 
-.input-remember label {
+.inputRemember label {
   margin-left: 0.25rem;
 }
 
-.input-wrapper {
+.inputWrapper {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
 }
 
-.input-wrapper label {
+.inputWrapper label {
   font-weight: bold;
 }
 
-.input-wrapper input {
+.inputWrapper input {
   padding: 5px;
   font-size: 1.2rem;
 }

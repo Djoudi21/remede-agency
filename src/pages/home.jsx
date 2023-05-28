@@ -1,10 +1,11 @@
-import styles from "../css/_Home.module.scss";
-import stylesIndex from "../css/index.module.scss";
+import styles from "../assets/css/_Home.module.scss";
+import stylesIndex from "../assets/css/index.module.scss";
+import Layout from "../components/Layout";
 
 
 export default function Home() {
     return (
-        <main>
+        <Layout>
             <div  className={`${styles.hero}`}>
                 <section  className={`${styles.heroContent}`}>
                     <h2 className={`${stylesIndex.srOnly}`}>Promoted Content</h2>
@@ -16,8 +17,8 @@ export default function Home() {
             </div>
             <section className={`${styles.features}`}>
                 <h2 className={`${stylesIndex.srOnly}`}>Features</h2>
-               <div className={`${styles.featureItem}`}>
-                    <img src="./img/icon-chat.png" alt="Chat Icon" className={`${styles.featureIcon}`}/>
+                <div className={`${styles.featureItem}`}>
+                    <img src="../assets/img/icon-chat.png" alt="Chat Icon" className={`${styles.featureIcon}`}/>
                     <h3 className={`${styles.featureItemTitle}`}>You are our #1 priority</h3>
                     <p>
                         Need to talk to a representative? You can get in touch through our
@@ -26,7 +27,7 @@ export default function Home() {
                 </div>
                 <div className={`${styles.featureItem}`}>
                     <img
-                        src="./img/icon-money.png"
+                        src="../assets/img/icon-money.png"
                         alt="Chat Icon"
                         className={`${styles.featureIcon}`}                    />
                     <h3 className={`${styles.featureItemTitle}`}>More savings means higher rates</h3>
@@ -36,7 +37,7 @@ export default function Home() {
                 </div>
                 <div className={`${styles.featureItem}`}>
                     <img
-                        src="./img/icon-security.png"
+                        src="../assets/img/icon-security.png"
                         alt="Chat Icon"
                         className={`${styles.featureIcon}`}                    />
                     <h3 className={`${styles.featureItemTitle}`}>Security you can trust</h3>
@@ -46,6 +47,6 @@ export default function Home() {
                     </p>
                 </div>
             </section>
-        </main>
+        </Layout>
     )
 }
