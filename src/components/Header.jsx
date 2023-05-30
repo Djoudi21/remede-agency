@@ -2,12 +2,12 @@ import styles from "../assets/css/_Header.module.scss";
 import stylesIndex from "../assets/css/index.module.scss";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsLoggedIn} from "../store/logInSlice";
+import {setIsLoggedIn} from "../store/userSlice";
 
 
 export default function Header() {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(state => state.logIn.value)
+    const isLoggedIn = useSelector(state => state.user.value)
     const dispatch = useDispatch()
     function logOut() {
         if(isLoggedIn) {

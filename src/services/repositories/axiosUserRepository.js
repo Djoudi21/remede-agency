@@ -3,25 +3,23 @@ import axios from 'axios'
 
 export default class AxiosUserRepository {
     async signIn(credentials) {
-        console.log('RES', credentials)
-        // const res = await axios.post('http://localhost:3001/api/v1/user/login', {
-        //     "email": credentials.username,
-        //     "password": credentials.password
-        // })
-        // console.log('RES', res)
-        return {
-           data: {
-               status: 200
-           }
-        }
+        return await axios.post('http://localhost:3001/api/v1/user/login', {
+            "email": credentials.username,
+            "password": credentials.password
+        })
     }
 
-    async updateUserProfile (value){
-        console.log(value)
-        const res = await axios.put('http://localhost:3001/api/v1/user/profile', {
-            "firstName": value.username,
-            "lastName": value.password
-        })
-        console.log('RES', res)
+    async updateUserProfile ({firstname, lastname, token}){
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+            },
+        };
+        const data = {
+            firstName: firstname,
+            lastName: lastname
+        }
+        const res = await axios.put('http://localhost:3001/api/v1/user/profile', data, config)
+        return res.data
     }
 }

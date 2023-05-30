@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import styles from "../assets/css/_SignIn.module.scss";
 import stylesIndex from "../assets/css/index.module.scss";
 import { useSelector, useDispatch } from 'react-redux'
-import { setIsLoggedIn } from '../store/logInSlice'
+import {setIsLoggedIn, setToken} from '../store/userSlice'
 import {useState} from "react";
 import UserService from '../services/UserService'
 import AxiosUserRepository from "../services/repositories/axiosUserRepository";
@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 export default function SignIn() {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(state => !!state.logIn.value)
+    const isLoggedIn = useSelector(state => !!state.user.value)
     const dispatch = useDispatch()
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -21,6 +21,8 @@ export default function SignIn() {
         event.preventDefault();
         const res = await userService.signIn({email, password, rememberMe})
         if(res.data.status && res.data.status === 200) {
+            const token = res.data.body.token
+            dispatch(setToken(token))
             dispatch(setIsLoggedIn())
             navigate('/user/profile')
         }

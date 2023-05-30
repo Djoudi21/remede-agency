@@ -1,8 +1,5 @@
 import styles from "../assets/css/_UserProfile.module.scss";
-
-
-
-export default function AccountSection(props) {
+export default function AccountSection() {
     return (
         <section  className={`${styles.account}`}>
             <div  className={`${styles.accountContentWrapper}`}>
