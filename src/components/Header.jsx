@@ -3,12 +3,14 @@ import stylesIndex from "../assets/css/index.module.scss";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoggedIn} from "../store/userSlice";
+import logo from "../assets/img/argentBankLogo.png"
 
 
 export default function Header() {
     const navigate = useNavigate();
     const isLoggedIn = useSelector(state => state.user.value)
     const dispatch = useDispatch()
+
     function logOut() {
         if(isLoggedIn) {
             dispatch(setIsLoggedIn())
@@ -17,10 +19,10 @@ export default function Header() {
     }
     return (
         <nav className={`${styles.mainNav}`}>
-            <Link to={'/'} className={`${styles.mainNavLogo}`}>
+            <Link to={'/'} className={`${stylesIndex.flexCenter}`}>
                 <img
                     className={`${styles.mainNavLogoImage}`}
-                    src="../assets/img/argentBankLogo.png"
+                    src={logo}
                     alt="Argent Bank Logo"
                 />
                 <h1 className={`${stylesIndex.srOnly}`} >Argent Bank</h1>

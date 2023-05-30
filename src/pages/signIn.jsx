@@ -41,7 +41,7 @@ export default function SignIn() {
     }
     return (
         <Layout>
-            <main className={`${stylesIndex.main} ${stylesIndex.bgDark}`}>
+            <main className={`${stylesIndex.main} ${stylesIndex.bgDark} ${stylesIndex.flexCenter} ${stylesIndex.toto}`}>
                 <section className={`${styles.signInContent}`}>
                     <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
                     {isLoggedIn ?  <h1>Sign Out</h1>  : <h1>Sign In</h1>}

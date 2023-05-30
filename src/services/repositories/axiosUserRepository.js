@@ -12,7 +12,7 @@ export default class AxiosUserRepository {
     async updateUserProfile ({firstname, lastname, token}){
         const config = {
             headers: {
-                Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+                Authorization: `Bearer ${token}`,
             },
         };
         const data = {

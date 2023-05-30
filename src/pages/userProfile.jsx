@@ -14,7 +14,7 @@ export default function UserProfile() {
     const fullName = useSelector(state => state.user.fullName)
     return (
         <Layout>
-            <main className={`${stylesIndex.main} ${stylesIndex.bgDark}`}>
+            <main className={`${stylesIndex.main}`}>
                 <div className={`${stylesIndex.header}`}>
                     <h1>Welcome back<br/>{fullName.length ? fullName : 'Tony Jarvis'}!</h1>
                     <EditProfile isEditing={isUpdating} />
