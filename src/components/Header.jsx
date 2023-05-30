@@ -8,7 +8,7 @@ import logo from "../assets/img/argentBankLogo.png"
 
 export default function Header() {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(state => state.user.value)
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn)
     const dispatch = useDispatch()
 
     function logOut() {
