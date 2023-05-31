@@ -21,7 +21,7 @@ export default function SignIn() {
         event.preventDefault();
         const res = await userService.signIn({email, password, rememberMe})
         if(res.data.status && res.data.status === 200) {
-            const token = res.data.body.token
+            const token = await res.data.body.token
             dispatch(setToken(token))
             dispatch(setIsLoggedIn())
             navigate('/user/profile')

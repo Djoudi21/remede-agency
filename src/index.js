@@ -1,37 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/css/index.module.scss';
-import Home from './pages/home';
-import SignIn from './pages/signIn';
+import { RouterProvider } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import store from './store'
 import { Provider } from 'react-redux'
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
-import UserProfile from "./pages/userProfile";
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-        // errorElement: <ErrorPage />,
-    },
-    {
-        path: "/sign-in",
-        element: <SignIn />,
-        // errorElement: <ErrorPage />,
-    },
-    {
-        path: "/user/profile",
-        element: <UserProfile />,
-        // errorElement: <ErrorPage />,
-    },
-    // {
-    //     path: "*",
-    //     element:  <ErrorPage />,
-    // },
-]);
+import router from './router'
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

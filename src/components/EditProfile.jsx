@@ -1,4 +1,4 @@
-import stylesIndex from "../assets/css/index.module.scss";
+import styles from '../assets/css/_EditProfile.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
 import UserService from '../services/UserService'
 import AxiosUserRepository from "../services/repositories/axiosUserRepository";
@@ -33,18 +33,19 @@ export default function  EditProfile({isEditing}) {
     return(
         <>
             {isEditing ? (
-                <div>
-                    <div>
-                        <input onInput={setFirstnameValue} type="text"/>
-                        <input onInput={setLastnameValue} type="text"/>
+                <div className={`${styles.editForm}`}>
+                    <div className={`${styles.editFormSection}`}>
+                        <input placeholder='Enter firstname' onInput={setFirstnameValue} type="text"/>
+                        <button className={`${styles.editButton}`} onClick={useSubmit}>Save</button>
+
                     </div>
-                    <div>
-                        <button onClick={useSubmit}>Save</button>
-                        <button onClick={toggleIsEditing}>Cancel</button>
+                    <div  className={`${styles.editFormSection}`}>
+                        <input placeholder='Enter lastname' onInput={setLastnameValue} type="text"/>
+                        <button className={`${styles.editButton}`} onClick={toggleIsEditing}>Cancel</button>
                     </div>
                 </div>
             ) : (
-                <button onClick={toggleIsEditing} className={`${stylesIndex.editButton}`}>Edit Name</button>
+                <button onClick={toggleIsEditing} className={`${styles.editButton}`}>Edit Name</button>
             )
             }
         </>
