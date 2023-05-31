@@ -36,7 +36,7 @@ export default function Header() {
                     <Link className={`${styles.mainNavItem}`} to={'/user/profile'}>
                         <div className={`${stylesIndex.flexCenter}`}>
                             <Icon path={mdiAccountCircleOutline} size={1} />
-                            <span>{fullName ? fullName : 'Tony'}</span>
+                            <span>{fullName ? fullName : 'Tony Jarvis'}</span>
                         </div>
                     </Link>
                     <Link className={`${styles.mainNavItem}`} onClick={logOut} to={'/'}>
