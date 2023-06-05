@@ -9,22 +9,15 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />,
-        // errorElement: <ErrorPage />,
     },
     {
         path: "/sign-in",
         element: <SignIn />,
-        // errorElement: <ErrorPage />,
     },
     {
         path: "/user/profile",
         element: <UserProfile />,
-        // errorElement: <ErrorPage />,
     },
-    // {
-    //     path: "*",
-    //     element:  <ErrorPage />,
-    // },
 ]);
 
 export default router

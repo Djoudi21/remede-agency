@@ -21,6 +21,7 @@ export default function Header() {
         dispatch(setIsLoggedIn())
         navigate('/')
     }
+
     return (
         <nav className={`${styles.mainNav}`}>
             <Link to={'/'}  className={`${stylesIndex.flexCenter}`}>

@@ -24,7 +24,10 @@ export default function UserProfile() {
         }
     }, [])
 
-    const isUpdating = useSelector(state => state.user.isUpdating)
+    const isUpdating = useSelector(state => {
+        console.log('STATE', state)
+        state.user.isUpdating
+    })
     const fullName = useSelector(state => state.user.fullName)
     return (
         <Layout>
