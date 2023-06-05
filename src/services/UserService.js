@@ -10,4 +10,8 @@ export default class UserService {
     updateUserProfile = async (value) => {
         return this.userRepository.updateUserProfile(value)
     }
+
+    getUserProfile = async (value) => {
+        return this.userRepository.getUserProfile(value)
+    }
 }

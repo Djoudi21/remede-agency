@@ -2,9 +2,12 @@ import Layout from "../components/Layout";
 import stylesIndex from "../assets/css/index.module.scss";
 import AccountSection from "../components/AccountSection";
 import EditProfile from "../components/EditProfile";
-import { useSelector } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import UserService from "../services/UserService";
+import AxiosUserRepository from "../services/repositories/axiosUserRepository";
+import {setFullName} from "../store/userSlice";
 
 
 
@@ -17,18 +20,30 @@ const accountSections = [
 export default function UserProfile() {
     const navigate = useNavigate();
     const token = useSelector(state => state.user.token)
+    const isUpdating = useSelector(state => state.user.isUpdating)
+    const fullName = useSelector(state => state.user.fullName)
+    const axiosRepository = new AxiosUserRepository()
+    const userService = new UserService(axiosRepository)
+    const dispatch = useDispatch()
 
-    useEffect(() => {
+    useEffect(  () => {
         if (!token) {
             return navigate('/sign-in')
         }
+
+        // declare the data fetching function
+        const fetchData = async () => {
+            const toto = await userService.getUserProfile(token)
+            const name = `${toto.body.firstName} ${ toto.body.lastName}`
+            dispatch(setFullName(name))
+        }
+
+        // call the function
+        fetchData()
+            // make sure to catch any error
+            .catch(console.error);
     }, [])
 
-    const isUpdating = useSelector(state => {
-        console.log('STATE', state)
-        state.user.isUpdating
-    })
-    const fullName = useSelector(state => state.user.fullName)
     return (
         <Layout>
             <main className={`${stylesIndex.main}`}>
