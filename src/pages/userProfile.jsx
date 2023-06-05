@@ -33,8 +33,8 @@ export default function UserProfile() {
 
         // declare the data fetching function
         const fetchData = async () => {
-            const toto = await userService.getUserProfile(token)
-            const name = `${toto.body.firstName} ${ toto.body.lastName}`
+            const data = await userService.getUserProfile(token)
+            const name = `${data.body.firstName} ${ data.body.lastName}`
             dispatch(setFullName(name))
         }
 
