@@ -1,12 +1,13 @@
 import axios from 'axios'
-// import type {UserRepository} from "./interfaces/userRepository";
+import type { UserRepository } from "./interfaces/userRepository";
 
-export default class AxiosUserRepository {
+export default class AxiosUserRepository implements  UserRepository {
     async signIn(credentials) {
-        return await axios.post('http://localhost:3001/api/v1/user/login', {
-            "email": credentials.username,
-            "password": credentials.password
-        })
+        const data = {
+            email: credentials.email,
+            password: credentials.password,
+        }
+        return await axios.post('http://localhost:3001/api/v1/user/login', data)
     }
 
     async updateUserProfile ({firstname, lastname, token}){

@@ -48,6 +48,7 @@ export default function UserProfile() {
         <Layout>
             <main className={`${stylesIndex.main}`}>
                 <div className={`${stylesIndex.header}`}>
+                    <span>toto</span>
                     <h1>Welcome back<br/>{fullName.length ? fullName : 'Tony Jarvis'}!</h1>
                     <EditProfile isEditing={isUpdating} />
                 </div>
