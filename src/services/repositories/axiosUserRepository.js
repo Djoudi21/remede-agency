@@ -1,7 +1,7 @@
 import axios from 'axios'
-import type { UserRepository } from "./interfaces/userRepository";
+// import type { UserRepository } from "./interfaces/userRepository";
 
-export default class AxiosUserRepository implements  UserRepository {
+export default class AxiosUserRepository {
     async signIn(credentials) {
         const data = {
             email: credentials.email,
@@ -10,15 +10,15 @@ export default class AxiosUserRepository implements  UserRepository {
         return await axios.post('http://localhost:3001/api/v1/user/login', data)
     }
 
-    async updateUserProfile ({firstname, lastname, token}){
+    async updateUserProfile ({firstName, lastName, token}){
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         };
         const data = {
-            firstName: firstname,
-            lastName: lastname
+            firstName,
+            lastName
         }
         const res = await axios.put('http://localhost:3001/api/v1/user/profile', data, config)
         return res.data
