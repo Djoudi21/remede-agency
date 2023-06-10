@@ -16,6 +16,10 @@ export default function Header() {
     const fullName = useSelector(state => state.user.fullName)
     const dispatch = useDispatch()
 
+    /**
+     * Log out the user and navigate to the home page.
+     * @param {Event} event - The click event object.
+     */
     function logOut(event) {
         event.preventDefault()
         dispatch(setIsLoggedIn())

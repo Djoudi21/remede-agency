@@ -15,6 +15,10 @@ export default function  EditProfile({isEditing}) {
         dispatch(setIsUpdating())
     }
 
+    /**
+     * Handles the form submission.
+     * @param {Event} event - The form submission event object.
+     */
     async function useSubmit(event) {
         event.preventDefault();
         const res = await userService.updateUserProfile({firstname, lastname, token})
@@ -23,10 +27,18 @@ export default function  EditProfile({isEditing}) {
         dispatch(setIsUpdating())
     }
 
+    /**
+     * Updates the firstname state based on input value.
+     * @param {Event} event - The input change event object.
+     */
     function setFirstnameValue(event) {
         setFirstname(event.target.value)
     }
 
+    /**
+     * Updates the lastname state based on input value.
+     * @param {Event} event - The input change event object.
+     */
     function setLastnameValue(event) {
         setLastname(event.target.value)
     }

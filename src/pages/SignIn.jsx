@@ -17,6 +17,11 @@ export default function SignIn() {
     const [rememberMe, setRememberMe] = useState(false);
     const axiosUserRepository = new AxiosUserRepository()
     const userService = new UserService(axiosUserRepository)
+
+    /**
+     * Handles the sign-in action.
+     * @param {Event} event - The form submission event object.
+     */
     async function login(event) {
         event.preventDefault();
         const res = await userService.signIn({email, password, rememberMe})
@@ -28,14 +33,26 @@ export default function SignIn() {
         }
     }
 
+    /**
+     * Updates the email state based on input value.
+     * @param {Event} event - The input change event object.
+     */
     function setEmailInputValue(event) {
         setEmail(event.target.value)
     }
 
+    /**
+     * Updates the password state based on input value.
+     * @param {Event} event - The input change event object.
+     */
     function setPasswordInputValue(event) {
         setPassword(event.target.value)
     }
 
+    /**
+     * Updates the rememberMe state based on checkbox value.
+     * @param {Event} event - The checkbox change event object.
+     */
     function setRememberMeInoutValue(event) {
         setRememberMe(event.target.value)
     }

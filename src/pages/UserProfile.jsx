@@ -30,18 +30,19 @@ export default function UserProfile() {
         if (!token) {
             return navigate('/sign-in')
         }
-
-        // declare the data fetching function
+        /**
+         * Fetches user profile data and updates the full name.
+         */
         const fetchData = async () => {
-            const data = await userService.getUserProfile(token)
-            const name = `${data.body.firstName} ${ data.body.lastName}`
-            dispatch(setFullName(name))
+            try {
+                const data = await userService.getUserProfile(token);
+                const name = `${data.body.firstName} ${data.body.lastName}`;
+                dispatch(setFullName(name));
+            } catch (error) {
+                console.error(error);
+            }
         }
-
-        // call the function
-        fetchData()
-            // make sure to catch any error
-            .catch(console.error);
+        fetchData();
     }, [])
 
     return (

@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import type { UserRepository } from "./interfaces/userRepository";
 
 export default class AxiosUserRepository {
     async signIn(credentials) {

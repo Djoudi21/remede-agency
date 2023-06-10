@@ -1,7 +1,3 @@
-// import { UserRepository } from "./interfaces/userRepository";
-
-import axios from "axios";
-
 export default class InMemoryUserRepository {
     users = []
     signIn(credentials) {
