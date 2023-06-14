@@ -13,6 +13,7 @@ export default function SignIn() {
     const isLoggedIn = useSelector(state => !!state.user.value)
     const dispatch = useDispatch()
     const [password, setPassword] = useState('');
+    const [isLogginSuccesfull, setIsLogginSuccesfull] = useState(true);
     const [email, setEmail] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const axiosUserRepository = new AxiosUserRepository()
@@ -24,12 +25,14 @@ export default function SignIn() {
      */
     async function login(event) {
         event.preventDefault();
-        const res = await userService.signIn({email, password, rememberMe})
-        if(res.data.status && res.data.status === 200) {
+        try {
+            const res = await userService.signIn({email, password, rememberMe})
             const token = await res.data.body.token
             dispatch(setToken(token))
             dispatch(setIsLoggedIn())
             navigate('/user/profile')
+        } catch(e) {
+            setIsLogginSuccesfull(false)
         }
     }
 
@@ -56,6 +59,7 @@ export default function SignIn() {
     function setRememberMeInoutValue(event) {
         setRememberMe(event.target.value)
     }
+
     return (
         <Layout>
             <main className={`${stylesIndex.main} ${stylesIndex.bgDark} ${stylesIndex.flexCenter} ${stylesIndex.toto}`}>
@@ -76,6 +80,8 @@ export default function SignIn() {
                         >Remember me</label
                         >
                         </div>
+
+                        <span className={stylesIndex.error}>{!isLogginSuccesfull && 'Veuillez vérifier votre email et password'}</span>
                         <button  type="submit"  className={`${styles.signInButton}`}>Sign In</button>
                     </form>
                 </section>

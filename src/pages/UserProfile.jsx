@@ -35,11 +35,10 @@ export default function UserProfile() {
          */
         const fetchData = async () => {
             try {
-                const data = await userService.getUserProfile(token);
-                const name = `${data.body.firstName} ${data.body.lastName}`;
+                const {body: {firstName, lastName}} = await userService.getUserProfile(token);
+                const name = `${firstName} ${lastName}`;
                 dispatch(setFullName(name));
             } catch (error) {
-                console.error(error);
             }
         }
         fetchData();

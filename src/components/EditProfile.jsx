@@ -21,8 +21,8 @@ export default function  EditProfile({isEditing}) {
      */
     async function useSubmit(event) {
         event.preventDefault();
-        const res = await userService.updateUserProfile({firstname, lastname, token})
-        const fullName = `${res.body.firstName} ${res.body.lastName}`
+        const {body: {firstName, lastName}}  = await userService.updateUserProfile({firstname, lastname, token})
+        const fullName = `${firstName} ${lastName}`
         dispatch(setFullName(fullName))
         dispatch(setIsUpdating())
     }

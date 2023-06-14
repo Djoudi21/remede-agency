@@ -9,15 +9,15 @@ export default class AxiosUserRepository {
         return await axios.post('http://localhost:3001/api/v1/user/login', data)
     }
 
-    async updateUserProfile ({firstName, lastName, token}){
+    async updateUserProfile ({firstname, lastname, token}){
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         };
         const data = {
-            firstName,
-            lastName
+            firstName: firstname,
+            lastName: lastname
         }
         const res = await axios.put('http://localhost:3001/api/v1/user/profile', data, config)
         return res.data
